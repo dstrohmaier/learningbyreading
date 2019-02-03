@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.txt~
 
 # C extensions
 *.so
@@ -56,9 +57,6 @@ docs/_build/
 # PyBuilder
 target/
 
-config/babelfy.var.properties
-config/disambiguation.conf
-config/semanticparsing.conf
 ext/ukb_2.2.tgz
 ext/candc/
 ext/ukb/

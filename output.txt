@@ -1,0 +1,1 @@
+fol(1,some(A,some(B,some(C,some(D,some(E,and(and(10306910-n(A),and(02086723-n(C),and(r1of(C,B),and(02961779-n(B),and(08477596-n(D),04342347-n(E)))))),some(F,and(r1Theme(F,C),and(r1Actor(F,E),and(01562372-v(F),and(r1across(C,A),r1in(E,D))))))))))))).

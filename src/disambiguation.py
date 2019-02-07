@@ -1,5 +1,6 @@
 from babelfy import babelfy
 from ukb import wsd
+from lesk import nltk_lesk
 from candc import postag
 from spotlight import spotlight
 import ConfigParser
@@ -34,6 +35,14 @@ def disambiguation(tokenized, drs):
         synsets = disambiguated['synsets']
         if config_mapping.get('net', 'module') == 'babelnet':
             synsets = ubk_to_babelnet(synsets)
+    elif config.get('wsd', 'module') == 'nltk_lesk':
+        log.info("Calling NLTK lesk")
+        if config_mapping.get('net', 'module') == 'babelnet':
+            log.error("NLTK lesk does not support babelnet mapping as of yet")
+            return None
+        disambiguated = nltk_lesk(tokenized)
+        synsets = disambiguated['synsets']
+        
 
     # Entity Linking
     if config.get('el', 'module') == 'babelfy' and config.get('wsd', 'module') != 'babelfy':

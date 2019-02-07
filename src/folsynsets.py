@@ -73,6 +73,10 @@ for filename in documents:
     log.info("Parsing")
     drs = get_all(tokenized)
     fol = get_fol(tokenized)
+    
+    print("Boxer drs: ", drs)
+    print("Boxer fol: ", fol)
+    
     if not drs:
         log.error("error during the execution of Boxer on file '{0}', exiting".format(filename))
         continue
@@ -90,6 +94,8 @@ for filename in documents:
                 entity2 != 'null'):
                 triples.append(('<{0}>'.format(entity1), '<{0}#comention>', '<{2}>'.format(config.get('namespace', 'relation'), entity2)))
 
+
+                
     # build dictionary of variables
     try:
         variables = dict()

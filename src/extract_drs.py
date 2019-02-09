@@ -58,7 +58,7 @@ def create_drs(text):
 
 
 def create_tags(text, token_list, drs, i):
-    tag_list = [("tok", token_list[i]),
+    tag_list = [("tag", token_list[i]),
     ]
 
     return tag_list

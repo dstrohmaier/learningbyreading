@@ -95,7 +95,7 @@ def create_xml(text, tokenized, drs):
         tag_token = etree.SubElement(tagged_tokens, "tagtoken")
         tags = etree.SubElement(tag_token, "tags")
         for tag_type, tag_text in create_tags(text, token_list, offset_list, drs, i):
-            new_tag = etree.SubElement(tags, "tag", "type={}".format(tag_type))
+            new_tag = etree.SubElement(tags, "tag", "type"=tag_type)
             new_tag.text = tag_text
 
     return doc

@@ -64,6 +64,8 @@ def create_tags(text, tokenized, drs, i):
     return tag_list
 
 def create_xml(text, tokenized, drs):
+    print("tokenized: ", tokenized)
+    
     root = etree.Element("xdrs-output",
                          version="'boxer v1.00'")
     doc = etree.ElementTree(root)

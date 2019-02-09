@@ -57,14 +57,15 @@ def create_drs(text):
     return tokenized, drs
 
 
-def create_tags(text, tokenized, drs, i):
-    tag_list = [("tok", tokenized[i]),
+def create_tags(text, token_list, drs, i):
+    tag_list = [("tok", token_list[i]),
     ]
 
     return tag_list
 
 def create_xml(text, tokenized, drs):
     print("tokenized: ", tokenized)
+    token_list = tokenized.split()
     
     root = etree.Element("xdrs-output",
                          version="'boxer v1.00'")
@@ -75,7 +76,7 @@ def create_xml(text, tokenized, drs):
     for i, token in enumerate(tokenized):
         tag_token = etree.SubElement(tagged_tokens, "tagtoken")
         tags = etree.SubElement(tag_token, "tags")
-        for tag, tag_text in create_tags(text, tokenized, drs, i):
+        for tag, tag_text in create_tags(text, token_list, drs, i):
             new_tag = etree.SubElement(tags, tag)
             new_tag.text = tag_text
 
@@ -97,4 +98,4 @@ for filename in documents:
     doc = create_xml(text, tokenized, drs)
 
     with open(options.output_file, "w") as outfile:
-        doc.write(outfile)
+        doc.write(outfile, pretty_print=True)

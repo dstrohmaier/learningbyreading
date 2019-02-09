@@ -1,1 +1,31 @@
-<xdrs-output version="'boxer v1.00'"><xdrs><taggedtokens><tagtoken><tags><tok>I</tok></tags></tagtoken><tagtoken><tags><tok> </tok></tags></tagtoken><tagtoken><tags><tok>w</tok></tags></tagtoken><tagtoken><tags><tok>a</tok></tags></tagtoken><tagtoken><tags><tok>s</tok></tags></tagtoken><tagtoken><tags><tok> </tok></tags></tagtoken><tagtoken><tags><tok>a</tok></tags></tagtoken><tagtoken><tags><tok>t</tok></tags></tagtoken><tagtoken><tags><tok> </tok></tags></tagtoken><tagtoken><tags><tok>s</tok></tags></tagtoken><tagtoken><tags><tok>c</tok></tags></tagtoken><tagtoken><tags><tok>h</tok></tags></tagtoken><tagtoken><tags><tok>o</tok></tags></tagtoken><tagtoken><tags><tok>o</tok></tags></tagtoken><tagtoken><tags><tok>l</tok></tags></tagtoken><tagtoken><tags><tok> </tok></tags></tagtoken><tagtoken><tags><tok>.</tok></tags></tagtoken></taggedtokens></xdrs></xdrs-output>
+<xdrs-output version="'boxer v1.00'">
+  <xdrs>
+    <taggedtokens>
+      <tagtoken>
+        <tags>
+          <tok>I</tok>
+        </tags>
+      </tagtoken>
+      <tagtoken>
+        <tags>
+          <tok>was</tok>
+        </tags>
+      </tagtoken>
+      <tagtoken>
+        <tags>
+          <tok>at</tok>
+        </tags>
+      </tagtoken>
+      <tagtoken>
+        <tags>
+          <tok>school</tok>
+        </tags>
+      </tagtoken>
+      <tagtoken>
+        <tags>
+          <tok>.</tok>
+        </tags>
+      </tagtoken>
+    </taggedtokens>
+  </xdrs>
+</xdrs-output>

@@ -73,7 +73,7 @@ def create_xml(text, tokenized, drs):
     
     xdrs = etree.SubElement(root, "xdrs")
     tagged_tokens = etree.SubElement(xdrs, "taggedtokens")
-    for i, token in enumerate(tokenized):
+    for i, token in enumerate(token_list):
         tag_token = etree.SubElement(tagged_tokens, "tagtoken")
         tags = etree.SubElement(tag_token, "tags")
         for tag, tag_text in create_tags(text, token_list, drs, i):

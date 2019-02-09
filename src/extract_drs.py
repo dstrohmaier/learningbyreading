@@ -58,7 +58,7 @@ def create_drs(text):
 
 
 def create_tags(text, token_list, offset_list, drs, i):
-    tag_list = [("tag", token_list[i]),
+    tag_list = [("tok", token_list[i]),
                 ("from", str(offset_list[i][0])),
                 ("to", str(offset_list[i][1]))
     ]
@@ -94,8 +94,8 @@ def create_xml(text, tokenized, drs):
     for i, token in enumerate(token_list):
         tag_token = etree.SubElement(tagged_tokens, "tagtoken")
         tags = etree.SubElement(tag_token, "tags")
-        for tag, tag_text in create_tags(text, token_list, offset_list, drs, i):
-            new_tag = etree.SubElement(tags, tag)
+        for tag_type, tag_text in create_tags(text, token_list, offset_list, drs, i):
+            new_tag = etree.SubElement(tags, "tag", "type={}".format(tag_type))
             new_tag.text = tag_text
 
     return doc

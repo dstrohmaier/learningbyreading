@@ -59,8 +59,8 @@ def create_drs(text):
 
 def create_tags(text, token_list, offset_list, drs, i):
     tag_list = [("tag", token_list[i]),
-                ("from", offset_list[i][0]),
-                ("to", offset_list[i][1])
+                ("from", str(offset_list[i][0])),
+                ("to", str(offset_list[i][1]))
     ]
 
     return tag_list

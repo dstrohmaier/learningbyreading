@@ -45,7 +45,7 @@ def create_drs(text):
         tokens = tokenize(text)
         if not tokens:
             log.error("error during tokenization of file '{0}', exiting".format(filename))
-            continue
+            return None
         tokenized = "\n".join([' '.join(sentence) for sentence in tokens[:-1]])
     else:
         tokenized = text

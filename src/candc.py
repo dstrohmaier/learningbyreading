@@ -157,9 +157,8 @@ def boxer_drs(tokenized):
     boxer_options = ['--stdin',
                      '--instantiate', 'true',
                      '--resolve', 'true',
-                     '--semantics', 'pdrs',
+                     '--semantics', 'drs',
                      '--roles', 'verbnet',
-                     '--nn', 'true',
                      '--format', 'xml']
     boxer_options.extend(get_boxer_options().split(' '))
 

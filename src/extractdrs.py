@@ -72,7 +72,8 @@ for filename in documents:
     print("type drs: ", type(drs))
     print(drs)
 
-    print(etree.tostring(drs))
+    xml_string = etree.tostring(drs)
+    doc = etree.fromstring(xml_string) 
     
-    #with open(options.output_file, "w") as outfile:
-    #drs.write(outfile, pretty_print=True)
+    with open(options.output_file, "w") as outfile:
+        drs.write(outfile, pretty_print=True)

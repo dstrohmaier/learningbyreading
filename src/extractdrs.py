@@ -38,7 +38,7 @@ parser.add_option('-c',
 (options, args) = parser.parse_args()
 
 
-def create_drs(text):
+def create_drs_string(text):
     # tokenization
     if not options.tokenized:
         log.info("Tokenization")
@@ -52,9 +52,9 @@ def create_drs(text):
 
     #print(postag(tokenized))
     log.info("Parsing")
-    drs = get_drs(tokenized)
+    drs_string = get_drs(tokenized)
     
-    return drs
+    return drs_string
 
 if options.input_file:
     documents = [options.input_file]
@@ -67,13 +67,12 @@ for filename in documents:
     with open(filename) as f:
         text = f.read()
         
-    drs = create_drs(text)
+    drs_string = create_drs_string(text)
     log.info("Test for debugging")
-    print("type drs: ", type(drs))
-    print(drs)
+    print("type drs_string: ", type(drs_string))
+    print(drs_string)
 
-    xml_string = etree.tostring(drs)
-    doc = etree.fromstring(xml_string) 
+    doc = etree.fromstring(drs_string) 
     
     with open(options.output_file, "w") as outfile:
-        drs.write(outfile, pretty_print=True)
+        drs_string.write(outfile, pretty_print=True)

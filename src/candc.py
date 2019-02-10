@@ -149,6 +149,34 @@ def boxer_local(tokenized, fol=False, drg=False):
     boxed = out.decode('utf-8').encode("utf-8")
 
     return boxed
+    
+    
+def boxer_drs(tokenized):
+    parsed = parse(tokenized)
+
+    boxer_options = ['--stdin',
+                     '--instantiate', 'true',
+                     '--resolve', 'true',
+                     '--semantics', 'pdrs',
+                     '--format', 'xml']
+    boxer_options.extend(get_boxer_options().split(' '))
+
+    boxer = join(dirname(__file__),'../{0}/bin/boxer'.format(config.get('candc', 'base_dir')))
+
+    process = subprocess.Popen([boxer] + boxer_options,
+                           shell=False,
+                           stdin=subprocess.PIPE,
+                           stdout=subprocess.PIPE,
+                           stderr=subprocess.PIPE)
+    out, err = process.communicate(parsed)
+
+    if err:
+        # Boxer throws a silly error every time (a bug), we want to ignore it
+        if not "No source location" in err:
+            log.error('Boxer error: {0}'.format(err))
+    boxed = out.decode('utf-8').encode("utf-8")
+
+    return boxed
 
 def tokenize_online(text):
     # HTTP request
@@ -277,13 +305,13 @@ def get_drs(tokenized):
     log.info("Trying to get DRS")
     
     try:
-        drs = objectify.fromstring(boxer(tokenized))
+        drs_string = boxer_drs(tokenized)
     except:
         print boxer(tokenized)
         log.error("cannot read Boxer XML")
         return None
     
-    return drs
+    return drs_string
     
 def get_all(tokenized):
     # get the tokens and their IDs

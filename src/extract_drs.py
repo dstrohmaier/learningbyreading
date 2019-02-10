@@ -1,6 +1,6 @@
 import os
 from optparse import OptionParser
-from candc import tokenize, get_all, get_fol
+from candc import tokenize, postag, get_all, get_fol
 
 import logging as log
 from lxml import etree
@@ -43,6 +43,7 @@ def create_drs(text):
     if not options.tokenized:
         log.info("Tokenization")
         tokens = tokenize(text)
+        print(postags(tokens))
         if not tokens:
             log.error("error during tokenization of file '{0}', exiting".format(filename))
             return None

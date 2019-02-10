@@ -72,5 +72,7 @@ for filename in documents:
     print("type drs: ", type(drs))
     print(drs)
 
-    with open(options.output_file, "w") as outfile:
-        drs.write(outfile, pretty_print=True)
+    print(drs.getchildren())
+    
+    #with open(options.output_file, "w") as outfile:
+    #drs.write(outfile, pretty_print=True)

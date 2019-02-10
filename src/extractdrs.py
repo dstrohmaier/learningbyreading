@@ -53,7 +53,7 @@ def create_drs(text):
     #print(postag(tokenized))
     log.info("Parsing")
     drs = get_drs(tokenized)
-
+    
     return drs
 
 if options.input_file:
@@ -67,6 +67,7 @@ for filename in documents:
     with open(filename) as f:
         text = f.read()
         
-
     drs = create_drs(text)
+    log.info("Test for debugging")
+    print("type drs: ", type(drs))
     print(drs)

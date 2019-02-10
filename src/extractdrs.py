@@ -71,3 +71,6 @@ for filename in documents:
     log.info("Test for debugging")
     print("type drs: ", type(drs))
     print(drs)
+
+    with open(options.output_file, "w") as outfile:
+        drs.write(outfile, pretty_print=True)

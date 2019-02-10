@@ -302,11 +302,11 @@ def get_drg(tokenized):
     lines = [line+'\n' for line in drg.split('\n') if not (line.startswith('%') or len(line)==0)]
     return lines
 
-def get_drs(tokenized):
+def get_drs(tokenized, semantics):
     log.info("Trying to get DRS")
     
     try:
-        drs_string = boxer_drs(tokenized)
+        drs_string = boxer_drs(tokenized, semantics)
     except:
         print boxer(tokenized)
         log.error("cannot read Boxer XML")

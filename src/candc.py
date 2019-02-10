@@ -274,7 +274,8 @@ def get_drg(tokenized):
     return lines
 
 def get_drs(tokenized):
-    # get the tokens and their IDs
+    log.info("Trying to get DRS")
+    
     try:
         drs = objectify.fromstring(boxer(tokenized))
     except:

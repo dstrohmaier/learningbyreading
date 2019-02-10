@@ -43,7 +43,6 @@ def create_drs(text):
     if not options.tokenized:
         log.info("Tokenization")
         tokens = tokenize(text)
-        #print(postag(tokens))
         if not tokens:
             log.error("error during tokenization of file '{0}', exiting".format(filename))
             return None
@@ -51,7 +50,7 @@ def create_drs(text):
     else:
         tokenized = text
 
-    print(postag(tokenized))
+    #print(postag(tokenized))
     log.info("Parsing")
     drs = get_all(tokenized)
     #fol = get_fol(tokenized)
@@ -81,6 +80,7 @@ def extract_pos_list(pos_text):
     
 def create_xml(text, tokenized, drs):
     print("tokenized: ", tokenized)
+    print("drs: ", drs)
     token_list = tokenized.split()
     
     root = etree.Element("xdrs-output",
@@ -90,7 +90,7 @@ def create_xml(text, tokenized, drs):
     xdrs = etree.SubElement(root, "xdrs")
     tagged_tokens = etree.SubElement(xdrs, "taggedtokens")
     pos_text = postag(tokenized)
-    pos_list = extract_pos_list
+    pos_list = extract_pos_list(pos_text)
     offset_list = create_offsets(text, token_list)
     
     for i, token in enumerate(token_list):

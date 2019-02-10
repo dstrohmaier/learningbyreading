@@ -72,7 +72,7 @@ for filename in documents:
     print("type drs: ", type(drs))
     print(drs)
 
-    print(drs.getchildren())
+    print(etree.tostring(drs))
     
     #with open(options.output_file, "w") as outfile:
     #drs.write(outfile, pretty_print=True)

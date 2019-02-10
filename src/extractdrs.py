@@ -3,7 +3,7 @@ from optparse import OptionParser
 from candc import tokenize, get_drs
 
 import logging as log
-#from lxml import etree
+from lxml import etree
 
 
 log.basicConfig(level=log.INFO)

@@ -43,7 +43,7 @@ def create_drs(text):
     if not options.tokenized:
         log.info("Tokenization")
         tokens = tokenize(text)
-        print(postag(tokens))
+        #print(postag(tokens))
         if not tokens:
             log.error("error during tokenization of file '{0}', exiting".format(filename))
             return None
@@ -51,6 +51,7 @@ def create_drs(text):
     else:
         tokenized = text
 
+    print(postag(tokenized))
     log.info("Parsing")
     drs = get_all(tokenized)
     #fol = get_fol(tokenized)

@@ -151,13 +151,13 @@ def boxer_local(tokenized, fol=False, drg=False):
     return boxed
     
     
-def boxer_drs(tokenized):
+def boxer_drs(tokenized, semantics):
     parsed = parse(tokenized)
 
     boxer_options = ['--stdin',
                      '--instantiate', 'true',
                      '--resolve', 'true',
-                     '--semantics', 'drs',
+                     '--semantics', semantics,
                      '--roles', 'verbnet',
                      '--format', 'xml']
     boxer_options.extend(get_boxer_options().split(' '))

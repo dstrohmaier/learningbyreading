@@ -23,18 +23,17 @@ parser.add_option('-d',
 parser.add_option('-o',
                   '--output',
                   dest="output_file",
-                  help="write JSON to FILE",
+                  help="write XML to FILE",
                   metavar="FILE")
 parser.add_option('-t',
                   '--tokenized',
                   action="store_true",
                   dest="tokenized",
                   help="do not tokenize input")
-parser.add_option('-c',
-                  '--comentions',
-                  action="store_true",
-                  dest="comentions",
-                  help="output co-mentions")
+parser.add_option('-s',
+                  '--semantics',
+                  dest="semantics",
+                  help="boxer semantics options")
 (options, args) = parser.parse_args()
 
 
@@ -52,7 +51,7 @@ def create_drs_string(text):
 
     #print(postag(tokenized))
     log.info("Parsing")
-    drs_string = get_drs(tokenized)
+    drs_string = get_drs(tokenized, options.semantics)
     
     return drs_string
 

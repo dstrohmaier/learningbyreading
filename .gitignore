@@ -4,7 +4,7 @@ __pycache__/
 *.txt~
 *.py~
 
-test_extract.py
+test_extract.txt
 
 # C extensions
 *.so

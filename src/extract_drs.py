@@ -59,13 +59,6 @@ def create_drs(text):
     return tokenized, drs
 
 
-def create_tags(text, token_list, offset_list, drs, i):
-    tag_list = [("tok", token_list[i]),
-                ("from", str(offset_list[i][0])),
-                ("to", str(offset_list[i][1]))
-    ]
-
-    return tag_list
 
 def create_offsets(text, token_list):
     current = 0
@@ -81,6 +74,11 @@ def create_offsets(text, token_list):
 
     return offset_list
 
+def extract_pos_list(pos_text):
+    token_list = pos_text.split()
+    pos_list = [tagged_token.split("|")[1] for tagged_token in token_list]
+    return pos_list
+    
 def create_xml(text, tokenized, drs):
     print("tokenized: ", tokenized)
     token_list = tokenized.split()
@@ -91,12 +89,22 @@ def create_xml(text, tokenized, drs):
     
     xdrs = etree.SubElement(root, "xdrs")
     tagged_tokens = etree.SubElement(xdrs, "taggedtokens")
+    pos_text = postag(tokenized)
+    pos_list = extract_pos_list
     offset_list = create_offsets(text, token_list)
     
     for i, token in enumerate(token_list):
         tag_token = etree.SubElement(tagged_tokens, "tagtoken")
         tags = etree.SubElement(tag_token, "tags")
-        for tag_type, tag_text in create_tags(text, token_list, offset_list, drs, i):
+
+
+        tag_list = [("tok", token_list[i]),
+                    ("from", str(offset_list[i][0])),
+                    ("to", str(offset_list[i][1])),
+                    ("POS", pos_list[i])
+        ]
+        
+        for tag_type, tag_text in tag_list:
             kwargs = {"type": tag_type}
             new_tag = etree.SubElement(tags, "tag", **kwargs)
             new_tag.text = tag_text

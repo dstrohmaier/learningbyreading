@@ -158,6 +158,8 @@ def boxer_drs(tokenized):
                      '--instantiate', 'true',
                      '--resolve', 'true',
                      '--semantics', 'pdrs',
+                     '--roles', 'verbnet',
+                     '--nn', 'true',
                      '--format', 'xml']
     boxer_options.extend(get_boxer_options().split(' '))
 

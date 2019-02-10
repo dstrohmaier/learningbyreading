@@ -75,4 +75,4 @@ for filename in documents:
     doc = etree.fromstring(drs_string) 
     
     with open(options.output_file, "w") as outfile:
-        drs_string.write(outfile, pretty_print=True)
+        doc.write(outfile, pretty_print=True)

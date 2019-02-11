@@ -2,10 +2,11 @@ import os
 from os.path import join
 
 from optparse import OptionParser
-from candc import tokenize, get_drs
+from candc import postag, tokenize, get_drs
 
 import logging as log
 from lxml import etree
+from xml_tools import insert_tags_for_token
 
 parser = OptionParser()
 parser.add_option('-d',
@@ -33,9 +34,50 @@ def create_drs_string(text, semantics):
     log.info("Parsing")
     drs_string = get_drs(tokenized, semantics)
     
-    return drs_string
+    return drs_string, tokenized
 
 
+def create_offsets(text, token_list):
+    current = 0
+    offset_list = []
+    
+    for token in token_list:
+        token_len = len(token)
+        while text[current:current+token_len] != token:
+            current += 1
+
+        offset_list.append((current, current+token_len))
+        current += token_len
+
+    return offset_list
+
+def create_xml(drs_string, text, tokenized):
+    root = etree.fromstring(drs_string) 
+    doc = etree.ElementTree(root)    
+
+    #pos_text = postag(tokenized)
+    #pos_list = extract_pos_list(pos_text)
+
+    token_list = tokenized.split()
+    offset_list = create_offsets(text, token_list)
+    tag_list_list = []
+    
+    for i, token in enumerate(token_list):
+        tag_token = etree.SubElement(tagged_tokens, "tagtoken")
+        tags = etree.SubElement(tag_token, "tags")
+
+
+        tag_list = [#("tok", token_list[i]),
+                    #("POS", pos_list[i]),
+                    ("from", str(offset_list[i][0])),
+                    ("to", str(offset_list[i][1]))
+        ]
+
+        tag_list_list.append(tag_list)
+
+    doc = insert_tags_for_token(doc, tag_list_list)
+    return doc
+    
 def create_directory_data(directory_to_walk):
     for walk_return in os.walk(directory_to_walk):
         directory = walk_return[0]
@@ -49,10 +91,9 @@ def create_directory_data(directory_to_walk):
             text = infile.read()
             text += "\n<EOF>"
                 
-        drs_string = create_drs_string(text, options.semantics)
+        drs_string, tokenized = create_drs_string(text, options.semantics)
 
-        root = etree.fromstring(drs_string) 
-        doc = etree.ElementTree(root)
+        doc = create_xml(drs_string, text, tokenized)
 
         output_file = join(directory, "en.boxer.drs.xml")
         with open(output_file, "w") as outfile:

@@ -84,7 +84,7 @@ def create_directory_data(directory_to_walk):
 
         text_file = join(directory, "en.raw")
         
-        if not os.isfile(text_file):
+        if not os.path.isfile(text_file):
             continue
             
         with open(text_file, "r") as infile:

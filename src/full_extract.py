@@ -64,7 +64,8 @@ def create_xml(drs_string, text, tokenized):
     #pos_list = extract_pos_list(pos_text)
 
     token_list = tokenized.split()
-    print("List of tokens: ", token_list)
+    token_list = token_list[:-1] # get rid of my EOF
+    #print("List of tokens: ", token_list)
     
     offset_list = create_offsets(text, token_list)
     tag_list_list = []

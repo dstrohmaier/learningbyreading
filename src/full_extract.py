@@ -19,6 +19,7 @@ parser.add_option('-d',
 parser.add_option('-s',
                   '--semantics',
                   dest="semantics",
+                  default="drs",
                   help="boxer semantics options")
 (options, args) = parser.parse_args()
 
@@ -58,7 +59,6 @@ def create_xml(drs_string, text, tokenized):
     assert type(drs_string) == str, "drs_string has to be string is {} instead".format(type(drs_string))
     
     root = etree.fromstring(drs_string) 
-    doc = etree.ElementTree(root)    
 
     #pos_text = postag(tokenized)
     #pos_list = extract_pos_list(pos_text)
@@ -76,7 +76,9 @@ def create_xml(drs_string, text, tokenized):
 
         tag_list_list.append(tag_list)
 
-    doc = insert_tags_for_token(doc, tag_list_list)
+    root = insert_tags_for_token(root, tag_list_list)
+    doc = etree.ElementTree(root)
+    
     return doc
     
 def create_directory_data(directory_to_walk):

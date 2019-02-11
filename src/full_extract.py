@@ -8,6 +8,8 @@ import logging as log
 from lxml import etree
 from xml_tools import insert_tags_for_token
 
+log.basicConfig(level=log.INFO)
+
 parser = OptionParser()
 parser.add_option('-d',
                   '--input-dir',
@@ -52,6 +54,9 @@ def create_offsets(text, token_list):
     return offset_list
 
 def create_xml(drs_string, text, tokenized):
+    log.info("creating xml")
+    assert type(drs_string) == str, "drs_string has to be string is {} instead".format(type(drs_string))
+    
     root = etree.fromstring(drs_string) 
     doc = etree.ElementTree(root)    
 
@@ -79,6 +84,7 @@ def create_xml(drs_string, text, tokenized):
     return doc
     
 def create_directory_data(directory_to_walk):
+    log.info("starting to walk directory: {}".format(directory_to_walk))
     for walk_return in os.walk(directory_to_walk):
         directory = walk_return[0]
 
@@ -89,7 +95,7 @@ def create_directory_data(directory_to_walk):
             
         with open(text_file, "r") as infile:
             text = infile.read()
-            #text += "\n<EOF>"
+            text += "\n<EOF>"
                 
         drs_string, tokenized = create_drs_string(text, options.semantics)
 

@@ -89,7 +89,7 @@ def create_directory_data(directory_to_walk):
             
         with open(text_file, "r") as infile:
             text = infile.read()
-            text += "\n<EOF>"
+            #text += "\n<EOF>"
                 
         drs_string, tokenized = create_drs_string(text, options.semantics)
 

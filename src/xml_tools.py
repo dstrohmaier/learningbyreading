@@ -1,7 +1,7 @@
 from lxml import etree
 
 def insert_tags_for_token(root, tag_list_list):
-    tags_element_list = root.findall("tags")
+    tags_element_list = root.findall(".//tags")
     print(root)
     print(etree.tostring(root))
     print(tags_element_list)

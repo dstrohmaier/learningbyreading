@@ -72,7 +72,7 @@ def create_xml(drs_string, text, tokenized):
     
     for i, token in enumerate(token_list):
         tag_list = [#("tok", token_list[i]),
-                    #("POS", pos_list[i]),
+                    #("pos", pos_list[i]),
                     ("from", str(offset_list[i][0])),
                     ("to", str(offset_list[i][1]))
         ]

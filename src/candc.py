@@ -308,8 +308,8 @@ def get_drs(tokenized, semantics):
     try:
         drs_string = boxer_drs(tokenized, semantics)
     except:
-        print boxer(tokenized)
         log.error("cannot read Boxer XML")
+        log.error(boxer(tokenized))
         return None
     
     return drs_string

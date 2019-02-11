@@ -1,1 +1,1 @@
-python src/full_extract.py ../data/gold 
+python src/full_extract.py --input-dir ../data/gold 

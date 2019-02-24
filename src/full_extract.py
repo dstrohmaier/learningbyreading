@@ -6,7 +6,7 @@ from candc import postag, tokenize, get_drs
 
 import logging as log
 from lxml import etree
-from xml_tools import insert_tags_for_token
+from xml_tools import insert_tags_for_token, all_tokens
 
 log.basicConfig(level=log.INFO)
 
@@ -63,9 +63,14 @@ def create_xml(drs_string, text, tokenized):
     #pos_text = postag(tokenized)
     #pos_list = extract_pos_list(pos_text)
 
-    token_list = tokenized.split()
-    token_list = token_list[:-1] # get rid of my EOF
+    token_list = all_tokens(root)
+
+    compare_token_list = tokenized.split()
+    compare_token_list = token_list[:-1] # get rid of my EOF
     #print("List of tokens: ", token_list)
+
+    if token_list != compare_token_list:
+        log.warning("token_list != compare_token_list\n***\ntoken_list: {}\n***\ncompare_token_list: {}".format(token_list, compare_token_list))
     
     offset_list = create_offsets(text, token_list)
     tag_list_list = []

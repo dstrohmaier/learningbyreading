@@ -49,6 +49,10 @@ def all_token_synsets(root):
     synsets = root.xpath(".//tags/tag[@type='wordnet']/text()")
     return synsets
 
+def all_tokens(root):
+    token_list = root.xpath(".//tags/tag[@type='tok']/text()")
+    return token_list
+
 
 def all_evaluation_data(root):
     synsets = root.xpath(".//tags/tag[@type='wordnet']/text()")

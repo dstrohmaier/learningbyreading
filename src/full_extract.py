@@ -66,7 +66,8 @@ def create_xml(drs_string, text, tokenized):
     token_list = all_tokens(root)
 
     compare_token_list = tokenized.split()
-    compare_token_list = token_list[:-1] # get rid of my EOF
+    if compare_token_list[-1] == "<EOF>":
+        compare_token_list = compare_token_list[:-1] # get rid of my EOF
     #print("List of tokens: ", token_list)
 
     if token_list != compare_token_list:

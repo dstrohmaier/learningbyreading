@@ -30,7 +30,12 @@ def insert_tags_for_token(root, tag_list_list):
     return root
 
 
+def information_for_wordnet(root):
+    token_list = root.xpath(".//tags/tag[@type='tok']/text()")
+    lemma_list = root.xpath(".//tags/tag[@type='lemma']/text()")
+    pos_list = root.xpath(".//tags/tag[@type='pos']/text()")
 
+    return token_list, lemma_list, pos_list
 
 def tags_from_all_tag_type(root, type_name):
     tags_element_list = root.xpath(".//tags/tag[@type='{}']/..".format(type_name))

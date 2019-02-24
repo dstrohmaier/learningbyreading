@@ -93,7 +93,9 @@ def create_directory_data(directory_to_walk):
         
         if not os.path.isfile(text_file):
             continue
-            
+
+        log.info("In directory: {}".format(directory))
+        
         with open(text_file, "r") as infile:
             text = infile.read()
             text += "\n<EOF>"
